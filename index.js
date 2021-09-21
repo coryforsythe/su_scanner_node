@@ -4,7 +4,13 @@ let configservice = {}
 
 const Regions = fs.readFileSync('./regions.aws.list', 'utf8').toString().split('\n');
 const ResourceTypes = fs.readFileSync('./resources.aws.list', 'utf8').toString().split('\n');
+
 let total = 0;
+
+const sleep = function (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 const discovery = async function (region, resourceType, nextToken) {
     AWS.config.update({ region });
@@ -28,9 +34,11 @@ Promise.all(Regions.map(async (region) => {
                     const res = await discovery(region, rt, nextToken);
                     total += res.resourceIdentifiers.length
                     console.info("|  " + region + "   " + rt + " " + res.resourceIdentifiers.length);
+
                     if (res.nextToken) {
                         nextToken = res.nextToken;
                         morepages = true;
+                        await sleep(500); //sleep as to not burden the API
                     }
                     else {
                         morepages = false;
