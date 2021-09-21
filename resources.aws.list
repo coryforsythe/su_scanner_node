@@ -1,0 +1,6 @@
+AWS::EC2::Instance
+AWS::RDS::DBInstance
+AWS::DynamoDB::Table
+AWS::Lambda::Function
+AWS::ApiGateway::RestApi
+AWS::ApiGatewayV2::Api
