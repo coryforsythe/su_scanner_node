@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.991.0"
+    "aws-sdk": "^2.991.0",
+    "multispinner": "^0.2.1"
   }
 }

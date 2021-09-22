@@ -43,36 +43,46 @@ Once the discovery has been completed, a table for resources in each combincatio
 
 **Example Output**
 ```
-cory@osx aws_su_node % node index.js                                  
-Discovering Region us-east-2
-Discovering Region us-east-1
-Discovering Region us-west-1
-Discovering Region us-west-2
-|  us-east-1   AWS::DynamoDB::Table 0
-|  us-east-1   AWS::ApiGateway::RestApi 0
-|  us-east-1   AWS::ApiGatewayV2::Api 0
-|  us-east-2   AWS::Lambda::Function 3
-|  us-east-2   AWS::DynamoDB::Table 0
-|  us-east-2   AWS::RDS::DBInstance 0
-|  us-east-2   AWS::ApiGateway::RestApi 1
-|  us-east-2   AWS::ApiGatewayV2::Api 1
-|  us-east-2   AWS::EC2::Instance 2
-|  us-east-1   AWS::EC2::Instance 0
-|  us-east-1   AWS::Lambda::Function 0
-|  us-east-1   AWS::RDS::DBInstance 0
-|  us-west-1   AWS::ApiGatewayV2::Api 0
-|  us-west-1   AWS::RDS::DBInstance 0
-|  us-west-1   AWS::Lambda::Function 0
-|  us-west-1   AWS::EC2::Instance 0
-|  us-west-1   AWS::DynamoDB::Table 0
-|  us-west-1   AWS::ApiGateway::RestApi 0
-|  us-west-2   AWS::EC2::Instance 0
-|  us-west-2   AWS::ApiGateway::RestApi 0
-|  us-west-2   AWS::DynamoDB::Table 0
-|  us-west-2   AWS::RDS::DBInstance 0
-|  us-west-2   AWS::ApiGatewayV2::Api 0
-|  us-west-2   AWS::Lambda::Function 0
+cory@osx aws_su_node % node index.js   
+
 Done. Total Resources 7
+
+
+Resources: 
+{
+  'us-east-2': {
+    'AWS::DynamoDB::Table': 0,
+    'AWS::ApiGatewayV2::Api': 1,
+    'AWS::ApiGateway::RestApi': 1,
+    'AWS::Lambda::Function': 3,
+    'AWS::EC2::Instance': 2,
+    'AWS::RDS::DBInstance': 0
+  },
+  'us-east-1': {
+    'AWS::RDS::DBInstance': 0,
+    'AWS::Lambda::Function': 0,
+    'AWS::DynamoDB::Table': 0,
+    'AWS::EC2::Instance': 0,
+    'AWS::ApiGatewayV2::Api': 0,
+    'AWS::ApiGateway::RestApi': 0
+  },
+  'us-west-1': {
+    'AWS::EC2::Instance': 0,
+    'AWS::ApiGateway::RestApi': 0,
+    'AWS::RDS::DBInstance': 0,
+    'AWS::Lambda::Function': 0,
+    'AWS::DynamoDB::Table': 0,
+    'AWS::ApiGatewayV2::Api': 0
+  },
+  'us-west-2': {
+    'AWS::ApiGatewayV2::Api': 0,
+    'AWS::DynamoDB::Table': 0,
+    'AWS::Lambda::Function': 0,
+    'AWS::RDS::DBInstance': 0,
+    'AWS::ApiGateway::RestApi': 0,
+    'AWS::EC2::Instance': 0
+  }
+}
 ```
 
 > Note: You may adjust the regions and resources used for discovery by editing the [regions.aws.list](regions.aws.list) and [resources.aws.list](resources.aws.list) files prior to running the script.  Regions must include only AWS regions where AWS config is supported as [documented here](https://docs.aws.amazon.com/general/latest/gr/awsconfig.html).  For a list of supported resource types, review the [dcumentation here](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html)
