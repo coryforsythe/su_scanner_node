@@ -12,6 +12,7 @@ const ResourceTypes = fs.readFileSync('./resources.aws.list', 'utf8').toString()
 
 //Stores the counts
 let total = 0;
+let errors=0;
 let counts={};
 
 //helper function to sleep the main thread for API safety (throttling control)
@@ -62,6 +63,9 @@ multispinner.on('done', () => {
     console.info("\n\nDone. Total Resources " + total);
     console.debug("\n\nResources: ");
     console.dir(counts);
+    if(errors>0){
+        console.error("\n\n"+errors+" ERRORS\n\n");
+    }
   })
 
 //Start discovery for each region
@@ -95,8 +99,16 @@ Regions.map(async (region) => {
                 multispinner.success(label);
             }
             catch(ex){
-                multispinner.error(label);
 
+                multispinner.error(label);
+                errors++;
+                console.error("Error occured processing "+label);
+                if(ex.message){
+                    console.error(ex.message)
+                }
+                else{
+                    console.trace(ex);
+                }
             }
             }
         }));
