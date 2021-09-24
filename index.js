@@ -91,7 +91,7 @@ const ecsDisco = async function (region) {
 
         }//end while
 
-        putCount(region, 'AWS::ECS::Containers', containers);
+        putCount(region, 'AWS::ECS::Containers (PaaS Resources)', containers);
         total += containers;
         multispinner.success(label);
 
@@ -179,7 +179,6 @@ Regions.map(async (region) => {
                     multispinner.success(region + ' AWS Config');
                 }
                 catch (ex) {
-                    errors++;
                     multispinner.error(region + ' AWS Config');
                     errorMessages.push("Error occured processing " + label + ": " + ex);
                 }
