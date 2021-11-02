@@ -91,7 +91,7 @@ const ecsDisco = async function (region) {
 
         }//end while
 
-        putCount(region, 'AWS::ECS::Containers (PaaS Resources)', containers);
+        putCount(region, 'AWS::ECS::Containers', containers);
         total += containers;
         multispinner.success(label);
 
